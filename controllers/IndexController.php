@@ -1,17 +1,18 @@
 <?php
 /**
- * Getty Suggest
+ * Finto Suggest
  * 
  * @copyright Copyright 2014 UCSC Library Digital Initiatives
+ * @copyright Copyright 2015 Matti Lassila
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
  */
 
 /**
- * The Getty Suggest controller.
+ * The Finto Suggest controller.
  * 
- * @package GettySuggest
+ * @package FintoSuggest
  */
-class GettySuggest_IndexController extends Omeka_Controller_AbstractActionController
+class FintoSuggest_IndexController extends Omeka_Controller_AbstractActionController
 {
 
   /**
@@ -44,7 +45,7 @@ class GettySuggest_IndexController extends Omeka_Controller_AbstractActionContro
         JOIN {$db->Element} e ON es.id = e.element_set_id 
         LEFT JOIN {$db->ItemTypesElements} ite ON e.id = ite.element_id 
         LEFT JOIN {$db->ItemType} it ON ite.item_type_id = it.id 
-        LEFT JOIN {$db->GettySuggest} ls ON e.id = ls.element_id 
+        LEFT JOIN {$db->FintoSuggest} ls ON e.id = ls.element_id 
         WHERE es.record_type IS NULL OR es.record_type = 'Item' 
         ORDER BY es.name, it.name, e.name";
     $elements = $db->fetchAll($sql);
@@ -69,9 +70,9 @@ class GettySuggest_IndexController extends Omeka_Controller_AbstractActionContro
    */
   private function _getFormSuggestOptions()
   {
-    //print_r($this->_helper->db->getTable('GettySuggest'));
+    //print_r($this->_helper->db->getTable('FintoSuggest'));
     //die();
-    $suggests = $this->_helper->db->getTable('GettySuggest')->getSuggestEndpoints();
+    $suggests = $this->_helper->db->getTable('FintoSuggest')->getSuggestEndpoints();
       
     $options = array('' => __('Select Below'));
 
@@ -89,16 +90,16 @@ class GettySuggest_IndexController extends Omeka_Controller_AbstractActionContro
    */
   private function _getAssignments()
   {
-    $gettySuggestTable = $this->_helper->db->getTable('GettySuggest');
+    $FintoSuggestTable = $this->_helper->db->getTable('FintoSuggest');
     $elementTable = $this->_helper->db->getTable('Element');
     $elementSetTable = $this->_helper->db->getTable('ElementSet');
     $itemTypeTable = $this->_helper->db->getTable('ItemType');
     $itemTypesElementsTable = $this->_helper->db->getTable('ItemTypesElements');
         
-    $suggestEndpoints = $gettySuggestTable->getSuggestEndpoints();
+    $suggestEndpoints = $FintoSuggestTable->getSuggestEndpoints();
     $assignments = array();
-    foreach ($gettySuggestTable->findAll() as $gettySuggest) {
-      $element = $elementTable->find($gettySuggest->element_id);
+    foreach ($FintoSuggestTable->findAll() as $FintoSuggest) {
+      $element = $elementTable->find($FintoSuggest->element_id);
       $elementSet = $elementSetTable->find($element->element_set_id);
       $elementSetName = $elementSet->name;
       if( $itemTypesElements = $itemTypesElementsTable->findByElement($element->id)) {
@@ -107,13 +108,13 @@ class GettySuggest_IndexController extends Omeka_Controller_AbstractActionContro
 	$elementSetName.=': '.$itemType->name;
       }
 
-      $authorityVocabulary = $suggestEndpoints[$gettySuggest->suggest_endpoint];
+      $authorityVocabulary = $suggestEndpoints[$FintoSuggest->suggest_endpoint];
       $assignments[] = array(
-			     'suggest_id' => $gettySuggest->id,
+			     'suggest_id' => $FintoSuggest->id,
 			     'element_set_name' => $elementSetName, 
 			     'element_name' => $element->name, 
 			     'authority_vocabulary' => $authorityVocabulary,
-			     'element_id' => $gettySuggest->element_id
+			     'element_id' => $FintoSuggest->element_id
 			     );
             
     }

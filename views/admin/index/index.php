@@ -1,10 +1,10 @@
-<?php echo head(array('title' => 'Getty Vocabulary Suggest')); ?>
+<?php echo head(array('title' => 'Finto Vocabulary Suggest')); ?>
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
 jQuery(document).ready(function() {
     jQuery('#element-id').change(function() {
         jQuery.post(
-            <?php echo js_escape(url('getty-suggest/index/suggest-endpoint')); ?>, 
+            <?php echo js_escape(url('finto-suggest/index/suggest-endpoint')); ?>, 
             {element_id: jQuery('#element-id').val()}, 
             function(data) {
                 jQuery('#suggest-endpoint').val(data);
@@ -15,7 +15,7 @@ jQuery(document).ready(function() {
 //]]>
 </script>
 <?php echo flash(); ?>
-<form method="post" action="<?php echo url('getty-suggest/suggest/add'); ?>">
+<form method="post" action="<?php echo url('finto-suggest/suggest/add'); ?>">
 <section class="seven columns alpha">
     <div class="field">
         <div id="element-id-label" class="two columns alpha">
@@ -23,7 +23,7 @@ jQuery(document).ready(function() {
         </div>
         <div class="inputs five columns omega">
             <p class="explanation"><?php echo __('Select an element to assign it ' 
-            . 'a Getty Collection authority/vocabulary. Elements already assigned ' 
+            . 'a Finto vocabulary. Elements already assigned ' 
             . 'an authority/vocabulary are marked with an asterisk (*).'); ?></p>
             <?php echo $this->formSelect('element_id', null, array('id' => 'element-id'), $this->form_element_options) ?>
         </div>
@@ -33,11 +33,11 @@ jQuery(document).ready(function() {
             <label for="suggest-endpoint"><?php echo __('Authority/Vocab'); ?></label>
         </div>
 <div class="inputs five columns omega">
-    <p class="explanation"><?php echo __('Enter a Getty collection authority/vocabulary ' 
+    <p class="explanation"><?php echo __('Enter a Finto vocabulary ' 
     . 'to enable the autosuggest feature for the above element. To disable ' 
     . 'the feature just deselect the option. For more information about the ' 
-    . 'authorities and vocabularies available at the Getty Collection see ' 
-    . '%shttp://getty.edu%s', '<a href="http://www.getty.edu/research/tools/vocabularies/lod/index.html" target="_blank">', '</a>'); ?></p>
+    . 'authorities and vocabularies available at Finto see ' 
+    . '%shttp://finto.fi%s', '<a href="http://finto.fi" target="_blank">', '</a>'); ?></p>
             <?php echo $this->formSelect('suggest_endpoint', null, array('id' => 'suggest-endpoint'), $this->form_suggest_options); ?>
         </div>
     </div>
@@ -73,7 +73,7 @@ jQuery(document).ready(function() {
             <td class="authority_vocabulary"><?php echo $assignment['authority_vocabulary']; ?></td>
             <td><button id="<?php echo $assignment['suggest_id'];?>" class="gv-edit-suggest-button" style="margin:0px 5px 0px 0px;">Edit</button>
 
-<form style="display:inline;" method="post" action="<?php echo url('getty-suggest/suggest/delete/suggest_id/'.$assignment['suggest_id']); ?>">
+<form style="display:inline;" method="post" action="<?php echo url('finto-suggest/suggest/delete/suggest_id/'.$assignment['suggest_id']); ?>">
 <?php echo $this->csrf;?>
 <button type='submit' style="margin:0px;">
      Delete
@@ -98,7 +98,7 @@ jQuery(document).ready(function() {
             if(jQuery(this).attr("id")==gvflag) {
                 var element_id = jQuery('#edit-element-id').val();
                 var vocab_id = jQuery('#edit-vocab-id').val();
-                var form = jQuery("<form method='post' action='<?php echo url('getty-suggest/suggest/edit/suggest_id/');  ?>"+gvflag+"'></form>");
+                var form = jQuery("<form method='post' action='<?php echo url('finto-suggest/suggest/edit/suggest_id/');  ?>"+gvflag+"'></form>");
                 form.append('<input type="hidden" name="element_id" value="'
 +element_id+'" />');
                 form.append('<input type="hidden" name="suggest_endpoint" value="'+vocab_id+'" />');

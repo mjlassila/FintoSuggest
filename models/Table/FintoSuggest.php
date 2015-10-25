@@ -1,36 +1,41 @@
 <?php
 /**
- * Getty Collection Suggest
+ * Finto Suggest
  * 
  * @copyright Copyright 2007-2012 UCSC Library Digital Initiatives
+ * @copyright Copyright 2015 Matti Lassila
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
  */
 
 /**
- * The getty_suggests table.
+ * The finto_suggests table.
  * 
- * @package Omeka\Plugins\GettySuggest
+ * @package Omeka\Plugins\FintoSuggest
  */
-class Table_GettySuggest extends Omeka_Db_Table
+class Table_FintoSuggest extends Omeka_Db_Table
 {
     /**
      * @var array $_suggestEndpoints List of suggest endpoints 
      * corresponding to controlled vocabularies
-     * and authorities made available by the Getty Trust LOD project
+     * and authorities made available by the Finto project
      * 
      */
     private $_suggestEndpoints = array(
-        'aat' => 'Art and Architecture Thesaurus', 
-        'tgn' => 'Thesuarus of Geographic Names', 
-        'ulan' => 'Union List of Artist Names', 
-        'cona' => 'Cultural Objects Name Authority'
+        'ysa' => 'Yleinen suomalainen asiasanasto', 
+        'kauno' => 'Kaunokki',
+        'pto' => 'PTO - Paikkatieto-ontologia',
+        'cn' => 'Suomalaiset yhteisönimet',
+        'liito' => 'LIITO - Liiketoimintaontologia',
+        'lapponica' => 'Lapponica',
+        'musa' => 'MUSA - Musiikin asiasanasto',
+        'valo' => 'VALO - Valokuvausalan ontologia'
 				       );
     
     /**
      * Find a suggest record by element ID.
      * 
      * @param int|string $elementId
-     * @return GettySuggest|null
+     * @return FintoSuggest|null
      */
     public function findByElementId($elementId)
     {

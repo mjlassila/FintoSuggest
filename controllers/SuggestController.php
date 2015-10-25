@@ -1,17 +1,18 @@
 <?php
 /**
- * Getty Suggest
+ * Finto Suggest
  * 
  * @copyright Copyright 2014 UCSC Library Digital Initiatives
+ * @copyright Copyright 2015 Matti Lassila
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
  */
 
 /**
- * The Getty Suggest Assignment controller.
+ * The Finto Suggest Assignment controller.
  * 
- * @package GettySuggest
+ * @package FintoSuggest
  */
-class GettySuggest_SuggestController extends Omeka_Controller_AbstractActionController
+class FintoSuggest_SuggestController extends Omeka_Controller_AbstractActionController
 {
 
     public function deleteAction()
@@ -19,8 +20,8 @@ class GettySuggest_SuggestController extends Omeka_Controller_AbstractActionCont
         if(version_compare(OMEKA_VERSION,'2.2.1') >= 0)
             $this->_validatePost();
         $suggestId = $this->getRequest()->getParam('suggest_id');
-        $gettySuggest = $this->_helper->db->getTable('GettySuggest')->find($suggestId);
-        $gettySuggest->delete();
+        $FintoSuggest = $this->_helper->db->getTable('FintoSuggest')->find($suggestId);
+        $FintoSuggest->delete();
         $this->_helper->flashMessenger(__('Successfully disabled the element\'s suggest feature.'), 'success');
         $this->_helper->redirector('index','index');
 
@@ -40,10 +41,10 @@ class GettySuggest_SuggestController extends Omeka_Controller_AbstractActionCont
             $this->_helper->redirector('index','index');
         }
         
-        $gettySuggest = $this->_helper->db->getTable('GettySuggest')->find($suggestId);
-        $gettySuggest->element_id = $elementId;
-        $gettySuggest->suggest_endpoint = $suggestEndpoint;
-        $gettySuggest->save();
+        $FintoSuggest = $this->_helper->db->getTable('FintoSuggest')->find($suggestId);
+        $FintoSuggest->element_id = $elementId;
+        $FintoSuggest->suggest_endpoint = $suggestEndpoint;
+        $FintoSuggest->save();
         $this->_helper->flashMessenger(__('Successfully edited the element\'s suggest feature.'), 'success');
         $this->_helper->redirector('index','index');
     }
@@ -73,13 +74,13 @@ class GettySuggest_SuggestController extends Omeka_Controller_AbstractActionCont
 	$this->_helper->redirector('index','index');
       }
       
-      $gettySuggest = new GettySuggest;
-      $gettySuggest->element_id = $elementId;
-      $gettySuggest->suggest_endpoint = $suggestEndpoint;
+      $FintoSuggest = new FintoSuggest;
+      $FintoSuggest->element_id = $elementId;
+      $FintoSuggest->suggest_endpoint = $suggestEndpoint;
       $this->_helper->flashMessenger(__('Successfully enabled the element\'s suggest feature.'), 'success');
       //      }
       
-      $gettySuggest->save();
+      $FintoSuggest->save();
 	
       $this->_helper->redirector('index','index');
     }
@@ -94,7 +95,7 @@ class GettySuggest_SuggestController extends Omeka_Controller_AbstractActionCont
      */
     private function _suggestEndpointExists($suggestEndpoint)
     {
-        $suggestEndpoints = $this->_helper->db->getTable('GettySuggest')->getSuggestEndpoints();
+        $suggestEndpoints = $this->_helper->db->getTable('FintoSuggest')->getSuggestEndpoints();
         if (!array_key_exists($suggestEndpoint, $suggestEndpoints)) {
             return false;
         }

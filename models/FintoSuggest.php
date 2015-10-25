@@ -1,20 +1,21 @@
 <?php
 /**
- * Getty Collection Suggest
+ * Finto Collection Suggest
  * 
  * @copyright Copyright 2014 UCSC Library Digital Initiatives
+ * @copyright Copyright 2014 Matti Lassila
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
  */
 
 /**
- * A getty_suggests row linking an element to a Getty vocabulary.
+ * A finto_suggests row linking an element to a Finto vocabulary.
  * 
- * @package GettySuggest
+ * @package FintoSuggest
  */
-class GettySuggest extends Omeka_Record_AbstractRecord
+class FintoSuggest extends Omeka_Record_AbstractRecord
 {
     /**
-     * @var int $id The record ID of the GettySuggest record
+     * @var int $id The record ID of the FintoSuggest record
      */
     public $id;
     
