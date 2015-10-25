@@ -23,9 +23,7 @@ class FintoSuggestPlugin extends Omeka_Plugin_AbstractPlugin
         'uninstall', 
         'initialize', 
         'define_acl', 
-        'admin_head',
-        'config',
-        'config_form'
+        'admin_head'
     );
     
     /**
@@ -126,23 +124,5 @@ class FintoSuggestPlugin extends Omeka_Plugin_AbstractPlugin
         }
     }
 
-    public function hookConfig() {
-        set_option('fintoLimit',$_REQUEST['finto-limit']);
-    }
-
-    public function hookConfigForm() {
-        ?>
-<div class="field">
-    <div id="finto-limit-label" class="two columns alpha">
-        <label for="finto-limit"><?php echo 'Maximum number of terms to return for each Finto vocabulary autosuggest'; ?></label>
-    </div>
-    <div class="inputs five columns omega">
-<?php echo get_view()->formText('finto-limit',get_option('fintoLimit'),array()); ?>
-        <p class="explanation"><?php echo __('Higher numbers will give you more options for each term, but will also slow down the response time.'); ?></p>
-    </div>
-</div>
-
-
-<?php
-    }
+    
 }
