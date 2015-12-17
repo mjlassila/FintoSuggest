@@ -112,7 +112,7 @@ class FintoSuggestPlugin extends Omeka_Plugin_AbstractPlugin
     }
 
     public function markSuggestField($components, $args) {
-        $components['description'] = $components['description']." (This element has autosuggest activated using the FintoSuggest plugin)";
+        $components['description'] = $components['description'].__('This element has autosuggest activated using the FintoSuggest plugin');
         return($components);
     }
 
