@@ -28,7 +28,8 @@ class Table_FintoSuggest extends Omeka_Db_Table
         'liito' => 'LIITO - Liiketoimintaontologia',
         'lapponica' => 'Lapponica',
         'musa' => 'MUSA - Musiikin asiasanasto',
-        'valo' => 'VALO - Valokuvausalan ontologia'
+        'valo' => 'VALO - Valokuvausalan ontologia',
+        'mts' => 'Metatietosanasto'
 				       );
     
     /**
