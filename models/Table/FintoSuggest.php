@@ -21,7 +21,9 @@ class Table_FintoSuggest extends Omeka_Db_Table
      * 
      */
     private $_suggestEndpoints = array(
-        'ysa' => 'Yleinen suomalainen asiasanasto', 
+        'yso' => 'Yleinen suomalainen ontologia',
+        'yso-paikat' => 'YSO-paikat',
+        'maotao' => 'MAO/TAO - Museo- ja taideteollisuusalan ontologia', 
         'kauno' => 'Kaunokki',
         'pto' => 'PTO - Paikkatieto-ontologia',
         'cn' => 'Suomalaiset yhteisönimet',
@@ -29,7 +31,8 @@ class Table_FintoSuggest extends Omeka_Db_Table
         'lapponica' => 'Lapponica',
         'musa' => 'MUSA - Musiikin asiasanasto',
         'valo' => 'VALO - Valokuvausalan ontologia',
-        'mts' => 'Metatietosanasto'
+        'mts' => 'Metatietosanasto',
+        'ysa' => 'Yleinen suomalainen asiasanasto'
 				       );
     
     /**
